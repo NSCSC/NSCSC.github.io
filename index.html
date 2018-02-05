@@ -16,10 +16,11 @@
   <script>
     var cmd = [
       [ 'help', 'Show this list of commands' ],
-      [ 'hack', 'Show info about the SpartanHacks' ],
+      [ 'hack', 'Show info about SpartanHacks' ],
       [ 'apply', 'Apply to SpartanHacks' ],
       [ 'faq', 'Read the frequently asked questions' ],
-      [ 'what', 'Read about our club' ]
+      [ 'what', 'Read about our club' ],
+      [ 'git', 'Go to our Github' ]
     ];
     var hack_info = [
       'SpartanHacks is North Springs High School\'s annual hackathon',
@@ -28,6 +29,23 @@
       'SpartanHacks will be hosted in the Metro Atlanta area in late Spring',
       'It is 100% free of cost to attend',
       'Plus, you get free food and a chance to win some awesome prizes'
+    ];
+    var faq_info = [
+      [ 'Who can attend SpartanHacks?',
+        'SpartanHacks is open to all high school students' ]
+    ];
+    var what_info = [
+      'Spartan CS is the Computer Science Club at North Springs High School',
+      'We are part of the national organization [[!ub;;;;https://hackclub.com/]Hack Club] for CS clubs',
+      'Our club meets every Tuesday in room E118 at North Springs',
+      'We can be reached at [[!ub;;;;mailto:nscompsciclub@gmail.com]NSCompSciClub@gmail.com]',
+      '',
+      'Officers:',
+      '\t+ Akasha Hayden',
+      '\t+ Ayobami Bolaji',
+      '\t+ Daniel Grinshpon',
+      '\t+ Eric Miller',
+      '\t+ Ohad Rau'
     ];
     jQuery(function($, undefined) {
       $('#terminal').terminal({
@@ -41,8 +59,26 @@
           for (i in hack_info) {
             this.echo('\t' + hack_info[i]);
           }
+        },
+        apply: function() {
+          this.echo('Coming soon!');
+        },
+        faq: function() {
+          for (i in faq_info) {
+            this.echo(faq_info[i][0]);
+            this.echo('\t' + faq_info[i][1]);
+          }
+        },
+        what: function() {
+          for (i in what_info) {
+            this.echo('\t' + what_info[i]);
+          }
+        },
+        git: function() {
+          this.echo('[[!ub;;;;https://github.com/nscsc]SpartanCS GitHub]');
         }
       }, {
+        convertLinks: false,
         prompt: '[[;#8AE234;#000000]cs]@[[;#729FCF;#000000]sparta]> ',
         greetings: 'Welcome to Spartan CS\n'
                  + 'Type "help" and press enter to view a list of commands\n\n'
