@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Spartan CS</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/1.11.4/css/jquery.terminal.min.css" rel="stylesheet"/>
+  </head>
+  <body style="background-color: #000">
+    <div class="content">
+      <div id="terminal" style="margin: auto">
+      </div>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdn.rawgit.com/inexorabletash/polyfill/master/keyboard.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/1.11.4/js/jquery.terminal.min.js"></script>
+  <script>
+    var cmd = [
+      [ 'help', 'Show this list of commands' ],
+      [ 'hack', 'Show info about SpartanHacks' ],
+      [ 'apply', 'Apply to SpartanHacks' ],
+      [ 'faq', 'Read the frequently asked questions' ],
+      [ 'what', 'Read about our club' ],
+      [ 'git', 'Go to our Github' ]
+    ];
+    var hack_info = [
+      'SpartanHacks is North Springs High School\'s annual hackathon',
+      'Competitors will get 22 hours to build something (a website, a game, an app, hardware, etc.) from scratch',
+      'Beginners are 100% welcome and will receive any help they need to build their own fully-functioning product at one of our workshops',
+      'SpartanHacks will be hosted in the Metro Atlanta area in late Spring',
+      'It costs only $20 to attend',
+      'Plus, you get free food and a chance to win some awesome prizes'
+    ];
+    var faq_info = [
+      [ 'Who can attend SpartanHacks?',
+        'SpartanHacks is open to all high school students from Fulton County Schools.',
+        'However, we may be able to make some exceptions for other students.' ],
+      [ 'What should I bring?',
+        '+ Computer (laptops or tablets only) with charger, mouse, etc.',
+        '+ Dry erase boards/markers, paper, pens, and pencils (for coming up with ideas, algorithms, calculations, etc.)',
+        '+ Toiletries',
+        '+ Change of clothes',
+        '+ Extra bag to carry any prizes or gifts',
+        '+ Light snacks (optional)',
+        '+ Flash drive' ],
+      [ 'What if my group finishes early?',
+        'Then make it better! You can even start another project and pick between the two to submit later.',
+        'If you\'re really bored, then ask one of the organizers for ideas.' ],
+      [ 'What if my computer breaks down?',
+        'See one of the organizers or volunteers first, and if something cannot be done to fix it, contact your parent and guardian and let them know.' ],
+      [ 'What if I change my mind and want to leave?',
+        'By signing the forms below, you agree to stay for the entire program.',
+        'If an emergency comes up, we can arrange for you to leave if your parents contact us.',
+        'However, if you know that you will not be able to attend for the whole event, you may not be able to attend--please let us know ASAP.' ],
+      [ 'What if my group doesn\'t work well together?',
+        'You can leave your group at any time over creative differences.',
+        'If you believe someone in your group is being disrespectful or breaking one of the rules, let one of the organizers know.' ],
+      [ 'What if I want to teach something during a lightning talk?',
+        'Tell one of the organizers, and an accommodation may be made to extend your speaking time.' ],
+      [ 'What if I want to bring a sibling or friend?',
+        'If that person goes to another school or is homeschooled, email us at nscompsciclub@gmail.com.',
+        'If they go to your school he or she will have to submit their own copy of this packet.' ],
+      [ 'What if I cannot eat any of the food provided?',
+        'The food (listed above) was chosen with people of different backgrounds in mind.',
+        'If you have any dietary restrictions that you feel we have missed, email us immediately and we will make arrangements.' ],
+      [ 'Can I bring gaming consoles, sports equipment, skateboards, etc?',
+        'If one of these is a component of your project idea, you are welcome to bring it.',
+        'However, you will not be able to throw balls or ride on skateboards/scooters without prior permission so we encourage you to keep this in mind.',
+        'Additionally, we encourage you to pack lightly as you will have fun things to do for the entire event and it may be inconvenient to keep up with large bags during the event.' ],
+      [ 'What if I get sick or injured?',
+        'We will have first-aid kits, but if the situation becomes serious then emergency services and a parent/guardian will be contacted.',
+        'If any concerns come to mind, please let the organizers know ASAP.' ],
+      [ 'How old do I have to be?',
+        'You have to be between the ages of 13 and 18.' ],
+      [ 'What if I need something from my car, or someone is dropping off something for me?',
+        'Tell one of the organizers or volunteers, and you will be escorted.' ]
+    ];
+    var what_info = [
+      'Spartan CS is the Computer Science Club at North Springs High School',
+      'We are part of the national organization [[!ub;;;;https://hackclub.com/]Hack Club] for CS clubs',
+      'Our club meets every Tuesday in room E118 at North Springs',
+      'We can be reached at [[!ub;;;;mailto:nscompsciclub@gmail.com]NSCompSciClub@gmail.com]',
+      '',
+      'Officers:',
+      '\t+ Akasha Hayden',
+      '\t+ Ayobami Bolaji',
+      '\t+ Daniel Grinshpon',
+      '\t+ Eric Miller',
+      '\t+ Ohad Rau'
+    ];
+    jQuery(function($, undefined) {
+      $('#terminal').terminal({
+        help: function() {
+          this.echo('List of commands:');
+          for (i in cmd) {
+            this.echo('\t' + cmd[i][0] + ' - ' + cmd[i][1]);
+          }
+        },
+        hack: function () {
+          for (i in hack_info) {
+            this.echo('\t' + hack_info[i]);
+          }
+        },
+        apply: function() {
+          this.echo('[[!ub;;;;https://goo.gl/forms/Brj5XycJtUeibWXf2]Click here to apply!]');
+          this.echo('Applications are due by April 23rd. If you have any questions, please email us at [[!ub;;;;mailto:nscompsciclub@gmail.com]NSCompSciClub@gmail.com]');
+        },
+        faq: function() {
+          for (i in faq_info) {
+            this.echo(faq_info[i][0]);
+            for (j = 1; j < faq_info[i].length; j++)
+              this.echo('\t' + faq_info[i][j]);
+            //this.echo('\n');
+          }
+        },
+        what: function() {
+          for (i in what_info) {
+            this.echo('\t' + what_info[i]);
+          }
+        },
+        git: function() {
+          this.echo('[[!ub;;;;https://github.com/nscsc]SpartanCS GitHub]');
+        }
+      }, {
+        convertLinks: false,
+        prompt: '[[;#8AE234;#000000]cs]@[[;#729FCF;#000000]sparta]> ',
+        greetings: 'Welcome to Spartan CS\n'
+                 + 'Type "help" and press enter to view a list of commands\n\n'
+                 + 'Applications are now open! [[!ub;;;;https://goo.gl/forms/Brj5XycJtUeibWXf2]Click here to apply!]\n\n'
+
+      });
+    });
+  </script>
+</html>
